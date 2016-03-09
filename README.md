@@ -1,4 +1,4 @@
-# Práctica OOP en JS
+# Haciendo código "bello" eliminando los code smell
 
 Este repositorio aloja la práctica de conversión de tipos, realizada con html, css y javascript, usando POO y haciendo uso de la herencia en javascript.
 

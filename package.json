@@ -1,0 +1,22 @@
+{
+  "name": "Conversor",
+  "version": "0.0.1",
+  "description": "Conversor javascript de tipos",
+  "main": "conversor.js",
+  "scripts": {
+    "test": "mocha test",
+    "chai": "curl https://raw.githubusercontent.com/chaijs/chai/master/chai.js -o test/chai.js"
+  },
+  "repository": {
+    "type": "git",
+      "url": "https://github.com/ULL-ESIT-GRADOII-PL/eliminacion-del-switch-ele-daniel-1"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+      "url": "https://github.com/ULL-ESIT-GRADOII-PL/eliminacion-del-switch-ele-daniel-1"
+  },
+    "homepage": "https://ULL-ESIT-GRADOII-PL.github.com/eliminacion-del-switch-ele-daniel-1",
+  "devDependencies": {
+  }
+}

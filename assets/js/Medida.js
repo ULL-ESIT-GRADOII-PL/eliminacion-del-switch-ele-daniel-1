@@ -68,32 +68,42 @@
             , 'xi');
 
         var m = XRegExp.exec(input, inputRegex);
-
+        if (m === null) {
+            return "No encaja la sintaxis";
+        }
         var medidas = Object.keys(converters); // [ 'Temperatura', 'Distancia' ... ]
         var i = 0;
         var found = false;
-        var from; // no se puede hacer var from = x && var to = y && false :(
-        var to;
+        var fromMeasure;
+        var toMeasure;
         while (!found && medidas[i]) { // i < medidas.length
-            // So funny
             // Miro por categorias, si en esa consigo el to y el from para convertir, salgo
-            // if ()
-            (from = converters[medidas[i]][m.kind[0]](m.kind).from)
-                && (to = converters[medidas[i]][m.toKind[0]](m.toKind).to)
-                && (found = true);
+            if (converters[medidas[i]][m.kind[0]]) {
+                fromMeasure = converters[medidas[i]][m.kind[0]]; // Para poder predecir valores
+            }
+
+            if (converters[medidas[i]][m.kind[0]] && converters[medidas[i]][m.toKind[0]]) {
+                fromMeasure = converters[medidas[i]][m.kind[0]];
+                toMeasure   = converters[medidas[i]][m.toKind[0]];
+                found = true;
+            }
             i++;
         }
 
         if (found) {
-            // measure.constructor.name
-            var result = to(from(parseInt(m.value))); // esta compuesto >>> queda mejor
+            var from = fromMeasure(m.kind).from;
+            var to   = toMeasure(m.toKind).to;
+
+            var result = "Está conviertiendo " + medidas[i-1] + ": De " + fromMeasure.constructor.name
+                + " a " + toMeasure.constructor.name
+                    + to(from(parseFloat(m.value) * (Math.pow(10, m.exp) || 1))).toFixed(2);
             return result;
         }
-        else if (from !== null) { // esta mal pensado repensar o añadir propiedades al from TODO:
-            return "No se encontro un valor para convertir de " + "joder" + "se tienen las siguientes opciones" + "joder" + " el tipo de medida es " + "joder";
+        else if (fromMeasure !== undefined) { // esta mal pensado repensar o añadir propiedades al from TODO:
+            return "No se encontro el unidad " + m.toKind + " desde la siguiente unidad " + fromMeasure.constructor.name;
         }
         else {
-            return "No se sabe en que medidas se trabaja";
+            return "No se sabe en que medidas se trabaja o se equivoco escribiendo reviselo!";
         }
     };
 

@@ -19,6 +19,30 @@
     // matcheado `matcher`, y la transformación de la medida estandar a la
     // a la implemetada y al revés `to` y `from`
     // el nombre del constructor debe ser descriptivo
+    // PS to :: Std -> Imple
+    //    from :: Imple -> Std
+    function Kelvin() {
+        Temperatura.call(this, 'k', function(value) {
+            if (value.match(/^(k(?:e(?:l(?:v(?:i(?:n)?)?)?)?)?)$/)) {
+                return new Kelvin();
+            }
+            else {
+                throw "No se pudo convetir";
+            }
+        });
+    }
+
+    Kelvin.prototype = {
+        to: function(value) {
+            return value;
+        },
+
+        from: function(value) {
+            return value;
+        }
+    };
+    new Kelvin(); // creamos un singleton privado
+
     function Celsius() {
         Temperatura.call(this, 'c', function(value) {
             if (value.match(/(c(?:e(?:l(?:s(?:i(?:u(?:s)?)?)?)?)?)?)/)) {
@@ -32,14 +56,14 @@
 
     Celsius.prototype = {
         to: function(value) {
-            return value;
+            return value - 273.15;
         },
 
         from: function(value) {
-            return value;
+            return value + 273.15;
         }
     };
-    new Celsius(); // creamos un singleton privado
+    new Celsius(); // Otro mas privado
 
     function Fahrenheit() {
         Temperatura.call(this, 'f', function(value) {
@@ -54,11 +78,11 @@
 
     Fahrenheit.prototype = {
         to: function(value) {
-            return value;
+            return value * 9/5 - 459.67;
         },
 
         from: function(value) {
-            return value;
+            return (value + 459.67) * 5/9;
         }
     };
     new Fahrenheit(); // Otro mas privado

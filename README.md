@@ -4,9 +4,14 @@
 Este conversor permite que se añadan nuevas unidades definiendo las clases(funciones) y heredando de un
 tipo de unidades.
 
-Con el tipo de unidades me refiero con unidades de distancia, unidades de medida, la aparente complejida
-se debe a que solo se definen medidas estandar entre cada tipo de unidad y todas las demas solo deben
-implementar dos método; de la medida a implementar a la estandar y al revés.
+Con el tipo de unidades me refiero con unidades de distancia, unidades de medida.
+
+La aparente complejida es debida a que se tiene que asegurar que no se produsca una conversion
+entre unidades de diferente tipo.
+
+Por otro lado, se ha simplificado el código ha escrbir si se añaden nuevos clases de unidades o
+unidades, esto se debe a que se definen medidas estándar entre cada tipo de unidad y todas
+las demas solo deben implementar dos métodos; de la medida a implementar a la estandar y al revés.
 
 ~~~~~javascript
     function Kelvin() { // mi unidad base se especifica en cada clase de unidad

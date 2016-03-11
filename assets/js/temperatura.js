@@ -14,7 +14,7 @@
         name: "Celsius",
 
         check: function(tipo) {
-          return tipo.match(/(^c(?:e(?:l(?:s(?:i(?:u(?:s)?)?)?)?)?)?$)/);
+          return tipo.match(/(^c(?:e(?:l(?:s(?:i(?:u(?:s)?)?)?)?)?)?$)/i);
         },
 
         toFahrenheit: function(value) {
@@ -38,7 +38,7 @@
         name: "Fahrenheit",
 
         check: function(tipo) {
-          return tipo.match(/(^f(?:a(?:h(?:r(?:e(?:n(?:h(?:e(?:i(?:t)?)?)?)?)?)?)?)?)?$)/);
+          return tipo.match(/(^f(?:a(?:h(?:r(?:e(?:n(?:h(?:e(?:i(?:t)?)?)?)?)?)?)?)?)?$)/i);
         },
 
         toCelsius: function(value) {
@@ -60,7 +60,7 @@
         name: "Kelvin",
 
         check: function(tipo) {
-          return tipo.match(/(k(?:e(?:l(?:v(?:i(?:n)?)?)?)?))/);
+          return tipo.match(/(k(?:e(?:l(?:v(?:i(?:n)?)?)?)?))/i);
         },
 
         toCelsius: function(value) {

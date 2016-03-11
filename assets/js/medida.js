@@ -53,8 +53,7 @@
                 var target = "to"+measures[destino[0]].name; // "toCelsius"
                 var checkTarget = new measures[destino[0]](numero)
                 if(!source.check(tipo) || !checkTarget.check(destino)) {
-                  return "Error de tipos"
-                  //throw "Error de tipos"
+                  throw "Error de tipos"
                 }
                 return source[target]().toFixed(2) + " "+target; // "0 Celsius"
             }

@@ -40,6 +40,7 @@
 
         measures.c = Celsius;
         measures.f = Fahrenheit;
+        measures.k = Kelvin;
 
         var match = Medida.match(valor);
 
@@ -47,13 +48,13 @@
             var numero = match.value,
                 tipo   =  match.tipo,
                 destino = match.destino;
-
             try {
-                var source = new measures[tipo[0]](numero);  // new Fahrenheit(32) //asumimos que la priemra letra es el tipo correcto
-                var target = "to"+measures[destino[0]].name; // "toCelsius"
-                var checkTarget = new measures[destino[0]](numero)
+                var source = new measures[tipo[0].toLowerCase()](numero);  // new Fahrenheit(32) //asumimos que la priemra letra es el tipo correcto
+                var target = "to"+measures[destino[0].toLowerCase()].name; // "toCelsius"
+                var checkTarget = new measures[destino[0].toLowerCase()](numero)
                 if(!source.check(tipo) || !checkTarget.check(destino)) {
-                  throw "Error de tipos"
+                  return "a";
+                  throw "Error de tipos";
                 }
                 return source[target]().toFixed(2) + " "+target; // "0 Celsius"
             }

@@ -9,7 +9,6 @@
         Temperatura.call(this, valor, "c");
     }
 
-
     Celsius.prototype = {
         name: "Celsius",
 
@@ -23,15 +22,15 @@
 
         toCelsius: function(value) {
             return this.valor;
+        },
+
+        toKelvin: function(value) {
+          return this.valor - 273;
         }
-
-
     };
 
     function Fahrenheit(valor) {
         Temperatura.call(this, valor, "f");
-
-
     }
 
     Fahrenheit.prototype = {
@@ -47,28 +46,30 @@
 
         toFahrenheit: function(value) {
             return this.valor;
+        },
+
+        toKelvin: function(value) {
+          return this.toCelsius(this.valor) - 273;
         }
     };
 
     function Kelvin(valor) {
         Temperatura.call(this, valor, "k");
-
-
     }
 
     Kelvin.prototype = {
         name: "Kelvin",
 
         check: function(tipo) {
-          return tipo.match(/(k(?:e(?:l(?:v(?:i(?:n)?)?)?)?))/i);
+          return tipo.match(/(k(?:e(?:l(?:v(?:i(?:n)?)?)?)?)?)/i);
         },
 
-        toCelsius: function(value) {
-            return ((this.valor - 32)*5/9);
+        toCelsius: function(value) {    //javascript no sabe sumar ._.
+            return ((this.valor) - -273);
         },
 
         toFahrenheit: function(value) {
-            return this.valor;
+            return ((this.toCelsius(this.valor) * 9/5)+32);
         }
     };
 
@@ -77,5 +78,6 @@
     exports.Temperatura = Temperatura;
     exports.Celsius = Celsius;
     exports.Fahrenheit = Fahrenheit;
+    exports.Kelvin = Kelvin;
 
 })(this);

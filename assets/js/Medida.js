@@ -72,13 +72,19 @@
             while (!found && medidas[i]) { // i < medidas.length
                 // So funny
                 // Miro por categorias, si en esa consigo el to y el from para convertir, salgo
-                (from = this.converters[medidas[i]](m.kind)) && (to = this.converters[medidas[i]](m.kind)) && (found = true);
+                (from = this.converters[medidas[i]](m.kind[0])) && (to = this.converters[medidas[i]](m.toKind[0])) && (found = true);
                 i++;
             }
 
             if (found) {
-                var result = to(from(value)); // esta compuesto >>> queda mejor
-                return result;
+                //averiguar si la palabra está bien escrita
+                if(!from.check(m.kind) || !to.check(m.kind)){
+                  Console.log("asdasdasda");
+                  return "Problemo";
+                }else{
+                  var result = to(from(value)); // esta compuesto >>> queda mejor
+                  return result;
+                }
             }
             else if (from !== null) { // esta mal pensado repensar o añadir propiedades al from TODO:
                 return "No se encontro un valor para convertir de " + "joder" + "se tienen las siguientes opciones" + "joder" + " el tipo de medida es " + "joder";

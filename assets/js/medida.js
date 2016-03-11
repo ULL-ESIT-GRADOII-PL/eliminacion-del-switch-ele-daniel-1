@@ -50,10 +50,10 @@
 
             try {
                 var source = new measures[tipo[0]](numero);  // new Fahrenheit(32) //asumimos que la priemra letra es el tipo correcto
-                if(source.check(tipo)){
-                  throw error;
-                }
                 var target = "to"+measures[destino[0]].name; // "toCelsius"
+                if(!source.check(tipo) || !target.check(destino)) {
+                  throw "error";
+                }
                 return source[target]().toFixed(2) + " "+target; // "0 Celsius"
             }
             catch(err) {

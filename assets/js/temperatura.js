@@ -50,6 +50,28 @@
         }
     };
 
+    function Kelvin(valor) {
+        Temperatura.call(this, valor, "k");
+
+
+    }
+
+    Kelvin.prototype = {
+        name: "Kelvin",
+
+        check: function(tipo) {
+          return tipo.match(/(k(?:e(?:l(?:v(?:i(?:n))))))/g);
+        },
+
+        toCelsius: function(value) {
+            return ((this.valor - 32)*5/9);
+        },
+
+        toFahrenheit: function(value) {
+            return this.valor;
+        }
+    };
+
     //Temperatura.prototype.medidas.c = this;
     //Temperatura.prototype.medidas.f = this;
     exports.Temperatura = Temperatura;
